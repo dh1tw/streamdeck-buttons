@@ -1,6 +1,6 @@
 module github.com/dh1tw/streamdeck-buttons
 
-go 1.14
+go 1.11
 
 require (
 	github.com/dh1tw/streamdeck v0.1.0
