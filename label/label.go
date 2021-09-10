@@ -1,6 +1,7 @@
 package label
 
 import (
+	"embed"
 	"fmt"
 	"image"
 	"image/color"
@@ -11,8 +12,10 @@ import (
 	sd "github.com/dh1tw/streamdeck"
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
-	"github.com/markbates/pkger"
 )
+
+//go:embed assets
+var assetDirectory embed.FS
 
 // Label is a basic Element for the StreamDeck.
 type Label struct {
@@ -33,8 +36,7 @@ func init() {
 
 	var err error
 
-	// Load the font
-	f, err := pkger.Open("/assets/fonts/mplus-1m-medium.ttf")
+	f, err := assetDirectory.Open("assets/mplus-1m-medium.ttf")
 	if err != nil {
 		log.Panic(err)
 	}

@@ -3,18 +3,20 @@ package ledbutton
 
 import (
 	"bufio"
+	"embed"
 	"fmt"
 	"image"
 	"image/draw"
 	"io/ioutil"
 	"log"
 
-	"github.com/markbates/pkger"
-
 	sd "github.com/dh1tw/streamdeck"
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
 )
+
+//go:embed assets
+var assetDirectory embed.FS
 
 // LedButton simulates a Button with a status LED.
 type LedButton struct {
@@ -52,7 +54,7 @@ func init() {
 
 	var err error
 
-	f, err := pkger.Open("/assets/fonts/mplus-1m-medium.ttf")
+	f, err := assetDirectory.Open("assets/mplus-1m-medium.ttf")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -71,7 +73,7 @@ func init() {
 	}
 
 	// Load the LED images
-	_ledOff, err := pkger.Open("/assets/images/led_off.png")
+	_ledOff, err := assetDirectory.Open("assets/led_off.png")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -82,7 +84,7 @@ func init() {
 		log.Panic(err)
 	}
 
-	_ledGreen, err := pkger.Open("/assets/images/led_green_on.png")
+	_ledGreen, err := assetDirectory.Open("assets/led_green_on.png")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -92,7 +94,7 @@ func init() {
 	if err != nil {
 		log.Panic(err)
 	}
-	_ledYellow, err := pkger.Open("/assets/images/led_yellow_on.png")
+	_ledYellow, err := assetDirectory.Open("assets/led_yellow_on.png")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -103,7 +105,7 @@ func init() {
 		log.Panic(err)
 	}
 
-	_ledRed, err := pkger.Open("/assets/images/led_red_on.png")
+	_ledRed, err := assetDirectory.Open("assets/led_red_on.png")
 	if err != nil {
 		log.Panic(err)
 	}
