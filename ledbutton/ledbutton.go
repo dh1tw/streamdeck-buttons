@@ -146,10 +146,10 @@ func (btn *LedButton) State() bool {
 	return btn.state
 }
 
-// SetState sets the state of the LED and renders the Button.
-func (btn *LedButton) SetState(state bool) error {
+// SetState sets the state of the LED. In order to render the changes
+// Draw() has to be called.
+func (btn *LedButton) SetState(state bool) {
 	btn.state = state
-	return btn.Draw()
 }
 
 // Change button state
@@ -172,9 +172,8 @@ func (btn *LedButton) Draw() error {
 
 // SetText sets the text (max 5 Chars) on the LedButton. The result will be
 // rendered immediately.
-func (btn *LedButton) SetText(text string) error {
+func (btn *LedButton) SetText(text string) {
 	btn.text = text
-	return btn.Draw()
 }
 
 func (btn *LedButton) addLED(color LEDColor, img *image.RGBA) {
