@@ -23,3 +23,10 @@ func Text(text string) func(*LedButton) {
 		btn.text = text
 	}
 }
+
+// State is a functional option for providing the initial state of the LED Button.
+func State(on bool) func(*LedButton) {
+	return func(btn *LedButton) {
+		btn.state = on
+	}
+}
