@@ -6,6 +6,7 @@ import (
 	"embed"
 	"fmt"
 	"image"
+	"image/color"
 	"image/draw"
 	"io/ioutil"
 	"log"
@@ -152,6 +153,12 @@ func (btn *LedButton) SetState(state bool) {
 	btn.state = state
 }
 
+// SetTextColor sets the text color of the button. In order to render the changes
+// Draw() has to be called.
+func (btn *LedButton) SetTextColor(textColor color.Color) {
+	btn.textColor.C = textColor
+}
+
 // Change button state
 func (btn *LedButton) Change(state sd.BtnState) {
 	if state == sd.BtnPressed {
@@ -170,8 +177,8 @@ func (btn *LedButton) Draw() error {
 	return btn.streamDeck.FillImage(btn.id, img)
 }
 
-// SetText sets the text (max 5 Chars) on the LedButton. The result will be
-// rendered immediately.
+// SetText sets the text (max 5 Chars) on the LedButton. In order to render the changes
+// Draw() has to be called.
 func (btn *LedButton) SetText(text string) {
 	btn.text = text
 }
@@ -241,6 +248,8 @@ func (btn *LedButton) addText(text string, img *image.RGBA) error {
 	var p textParams
 
 	switch len(text) {
+	case 0:
+		p = singleChar
 	case 1:
 		p = singleChar
 	case 2:

@@ -1,11 +1,11 @@
 package ledbutton
 
-import "image"
+import "image/color"
 
 // TextColor is a functional option which sets the text color.
-func TextColor(c image.Uniform) func(*LedButton) {
+func TextColor(c color.Color) func(*LedButton) {
 	return func(btn *LedButton) {
-		btn.textColor = &c
+		btn.textColor.C = c
 	}
 }
 
