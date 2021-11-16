@@ -99,6 +99,11 @@ func (l *Label) SetText(text string) {
 	l.text = text
 }
 
+// SetTextColor sets the color of the Label's text.
+func (l *Label) SetTextColor(c color.Color) {
+	l.textColor = c
+}
+
 // SetBgColor sets the background color of the Label.
 func (l *Label) SetBgColor(color *image.Uniform) {
 	l.bgColor = color
