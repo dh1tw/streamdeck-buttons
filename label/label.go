@@ -160,6 +160,8 @@ func (l *Label) addText(text string, img *image.RGBA) error {
 	var p textParams
 
 	switch len(text) {
+	case 0:
+		p = singleChar
 	case 1:
 		p = singleChar
 	case 2:
